@@ -1,25 +1,37 @@
 
 
-WARNING - turn audio off before starting!
+**WARNING - turn audio off before starting!**
 
-Picosystem: https://shop.pimoroni.com/products/picosystem
+
+
+**Picosystem.**
+
+https://shop.pimoroni.com/products/picosystem
+
 connect picosystem to a PC, hold the top face button and the on button, drag and drop the uf2 file, it should automatically start.
 
 
-32blit: https://shop.pimoroni.com/products/32blit-dev-kit
+**32blit**
+
+https://shop.pimoroni.com/products/32blit-dev-kit
+
 connect it to your PC, put 32blit into storage mode, copy the .blit file to it, install it from the device.
 
 
-Playstation.
+**Playstation.**
+
 yarmico.iso is really a bin file, the cue file is there also.
 
-windows.
+**windows.**
+
 no dependancies
 
 
-linux.
+**linux.**
+
 requires SDL2, sdl2_image and SDL2_net
 
-html.
-run here
+**html.**
+
+run here?
 
