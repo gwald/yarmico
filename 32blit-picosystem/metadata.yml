@@ -1,0 +1,10 @@
+title: Yarmico
+description: Stop the dropping things
+author: Yarmico
+splash:
+  file: assets/yarmico-image.png
+icon:
+  file: assets/yarmico-icon.png
+version: v1.0.0
+url: https://github.com/gwald/yarmico
+category: game

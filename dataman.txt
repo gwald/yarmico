@@ -1,0 +1,25 @@
+# run dataman to create data.h and DATA.MAK (siocons script)
+output=data
+#InitHeap grows (counting) up from free space, down this file
+start_address=80091000
+data = TPAGE00.tim
+#data = TPAGE01.tim
+#data = TPAGE02.tim
+#data = TPAGE03.tim
+#data = TPAGE04.tim
+#data = TPAGE05.tim
+data = NY_TITLE.TIM
+data = square.VB SNDVB_DATA
+data = square.VH SNDVH_DATA 
+#Stack growns (counting) down from exe to the top
+#EXE linked to 80120000
+
+string = 0 .h "#define ~LABEL (u_long *)0x~ADDRESS"
+
+#Finish off the .mak file with the program load
+path=
+string=1 .mak "local load ~FILE"
+data=main.exe
+
+#Print "Go" into the .mak file
+print 1 =go

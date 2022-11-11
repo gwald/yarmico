@@ -1,0 +1,23 @@
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) Exception trapped!
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) exception C0000005 at 48C23D
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) exception: ax 29CA1E8 bx 0 cx 29C5EE8 dx 29C5F50
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) exception: si 0 di 29735E0 bp 255F3DC sp 255EDBC
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) exception is: STATUS_ACCESS_VIOLATION
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) Stack trace:
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 0: sp = 0x255E8C4, pc = 0x1000A250
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 1: sp = 0x255E9E8, pc = 0x7EB332A8
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 2: sp = 0x255EA0C, pc = 0x7EB3327A
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 3: sp = 0x255EABC, pc = 0x7EB3E48A
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 4: sp = 0x255F3DC, pc = 0x45BB9C
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 5: sp = 0x255F54C, pc = 0x453C9D
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 6: sp = 0x255F650, pc = 0x4458D8
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 7: sp = 0x255F670, pc = 0x426381
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 8: sp = 0x255F698, pc = 0x42635C
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 9: sp = 0x255F6B4, pc = 0x409041
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 10: sp = 0x255FBC8, pc = 0x429393
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 11: sp = 0x255FBFC, pc = 0x42BD9F
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 12: sp = 0x255FC50, pc = 0x10006B89
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 13: sp = 0x255FF94, pc = 0x10006B9C
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 14: sp = 0x255FFA0, pc = 0x53C7DA
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) frame 15: sp = 0x255FFB0, pc = 0x40103A
+(C:\psx3\lib\gcc-lib\mips-unknown-ecoff\2.8.1\cc1.exe 1002) End of stack trace (more stack frames may be present)

@@ -1,0 +1,15 @@
+assets-images.cpp:
+  TPAGE00.png:
+    transparent: 0,0,0
+    name: tpage00
+    
+assets-SFX.cpp:
+  audio/00.raw:
+    name: asset_sound_00
+    
+    
+    
+    
+
+
+    

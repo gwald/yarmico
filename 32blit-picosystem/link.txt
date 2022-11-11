@@ -1,0 +1,2 @@
+/home/dev/emsdk/upstream/emscripten/em++ -O3 -DNDEBUG  -s TOTAL_MEMORY=67108864 -s ENVIRONMENT=web -s SDL2_IMAGE_FORMATS=['jpg'] --shell-file /home/dev/eclipse-workspace/pico/emscripten-shell.html -s 'EXTRA_EXPORTED_RUNTIME_METHODS=["addRunDependency", "removeRunDependency"]' @CMakeFiles/pico.dir/objects1.rsp -o pico.html @CMakeFiles/pico.dir/linklibs.rsp
+
