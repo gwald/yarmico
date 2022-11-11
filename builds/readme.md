@@ -33,5 +33,5 @@ requires SDL2, sdl2_image and SDL2_net
 
 **html.**
 
-run here?
+https://gwald.github.io/yarmico
 
