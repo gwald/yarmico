@@ -2,7 +2,7 @@
 
 WARNING - turn audio off before starting!
 
-Picosystem
+Picosystem: https://shop.pimoroni.com/products/picosystem
 connect picosystem to a PC, hold the top face button and the on button, drag and drop the uf2 file, it should automatically start.
 
 32blit
