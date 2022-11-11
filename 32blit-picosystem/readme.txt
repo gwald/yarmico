@@ -5,10 +5,10 @@
  https://github.com/gwald/yarmico
  *
  */
-1) make sure 32blit and picosystem is setup and compiles and runs the examples. 
-2) copy these files to parent folder
-3) mkdir build; cd build
+1) make sure 32blit and picosystem SDK's are setup, compiles and runs the examples first. 
+2) copy these files to parent folder, ie cp -a * ..
+3) cd ..; mkdir build; cd build
 4) cmake .. -D YOUR-EXTRA-COMMANDS-FOR-32BLIT-OR-PICOSYSTEM
-5) profit
+5) profit (in theory anyway)
 
 
