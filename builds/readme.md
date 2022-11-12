@@ -22,6 +22,8 @@ connect it to your PC, put 32blit into storage mode, copy the .blit file to it, 
 
 yarmico.iso is really a bin file, the cue file is there also.
 
+**WARNING** Saves to memcard 2, it will probably overwrite everthing on it, so use an empty one.
+
 **windows.**
 
 no dependancies
