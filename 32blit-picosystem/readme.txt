@@ -5,11 +5,20 @@
  https://github.com/gwald/yarmico
  *
  */
-1) make sure 32blit and picosystem SDK's are setup, compiles and runs the examples first. 
-2) copy these files to parent folder, ie cp -a * ..
-3) cd ..; mkdir build; cd build
-4) cmake .. -D YOUR-EXTRA-COMMANDS-FOR-32BLIT-OR-PICOSYSTEM
-5) profit (in theory anyway)
 
 PlayStation built with https://archive.org/details/net-yaroze-dev-winxp-vm-2022
-Other builds with https://archive.org/details/vm-01
+
+
+
+Other builds (using 32blit) with https://archive.org/details/vm-01
+
+1) make sure 32blit and picosystem SDK's are setup, compiles and runs the examples first. 
+2) copy these files to parent folder
+  cp -a * ..; cd ..; 
+
+6) Make and build as normal
+mkdir build; cd build
+cmake .. -D32BLIT_DIR=YOURPATHHERE/32blit-sdk; make
+
+7) executable is called pico 
+profit (in theory anyway)
