@@ -11,4 +11,4 @@
 4) cmake .. -D YOUR-EXTRA-COMMANDS-FOR-32BLIT-OR-PICOSYSTEM
 5) profit (in theory anyway)
 
-
+Built wilh https://archive.org/details/vm-01
