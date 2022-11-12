@@ -15,7 +15,7 @@ Yarmico 2022 Oct 11 - Nov 11
 
 Made for Net Yaroze game jam 2022
 
-Warning - Turn down your audio before starting!
+**Warning - Turn down your audio before starting!**
 
 Instructions:
 
