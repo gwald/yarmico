@@ -72,7 +72,7 @@ echo pico -----------------------------------------------------
 echo "#define _RELEASE_ 1" > /home/dev/eclipse-workspace/pico/build.h
 echo "#undef _DEBUG_ " >> /home/dev/eclipse-workspace/pico/build.h
 echo "#undef HARDWARE_TARGET " >> /home/dev/eclipse-workspace/pico/build.h
-echo "#define HARDWARE_TARGET HARDWARE_TARGET_32BLIT_HANDHELD " >> /home/dev/eclipse-workspace/pico/build.h
+echo "#define HARDWARE_TARGET HARDWARE_TARGET_PICOSYSTEM " >> /home/dev/eclipse-workspace/pico/build.h
 
 
 
