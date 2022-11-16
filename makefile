@@ -60,8 +60,6 @@ release:
 	make CFLAGS=" -O3 -Werror  -DNETYAROZE -D_RELEASE_"  all 
 	yarexe DATA.MAK 
 	make psx.iso
-	cp -u -f Z:\pico-backup\
-#	make PLAYISO_MED
 	
 
 psx.iso: psx.exe

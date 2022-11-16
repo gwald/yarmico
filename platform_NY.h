@@ -10,6 +10,13 @@
 #ifndef TARGET_HW
 #define TARGET_HW
 
+// 4bit title screen looses some brightness, make it brighter then normal
+#define YARMICO_TITLE_BRIGHTNESS_LEVEL 255 // max u8 brightness - normal is 127
+
+
+// ticks to hold title screen for
+#define YARMICO_TITLE_HOLD_COUNT 10 //because it's really bright, do diming quickly
+
 
 #include <r3000.h>
 #include <asm.h>

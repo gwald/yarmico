@@ -37,12 +37,6 @@ void RenderFinish( void);
 
 
 
-// Auto detect BIOS region
-// https://problemkaputt.de/psx-spx.htm#biosversions
-// from the Bootmenu/Intro Versions
-// The System ROM Version string can be found at BFC7FF32h (except in v1.0).
-// BIOS Memory Map: BFC7FF32h GUI Version/Copyright Strings (if any) (separated by one 00h byte)
-#define PLAYSTATION_REGION_CHECK()  ( *((volatile char *)0xBFC7FF52) ) // returns char 'I' for JPN, 'U' for US, 'E' for EU regions, based on BIOS information.
 
 
 // from: https://stackoverflow.com/questions/6127503/shuffle-array-in-c
@@ -1702,20 +1696,14 @@ which are written as 32bit value to GP0 or GP1.
 	// use display, pad and unknown RAM data as rand seed?
 	{
 		// must be looked at before GsInitGraph is called!
-#define GPUSTAT_REG 0x1F801814
+
 		// PAL Reg_GPUSTAT D614260A
 		// after GsInitGraph
 		// PAL Reg_GPUSTAT D6CE0000
 
-
-		LOG_MAIN("\n( *((volatile u32 *)GPUSTAT_REG) ) %X\n", ( *((volatile u32 *)GPUSTAT_REG) ));
-		g_yarmico_start_time = ( *((volatile u32 *)GPUSTAT_REG) );
+		g_yarmico_start_time = PLAYSTATION_REGION_CHECK();
+		LOG_MAIN("\n( *((volatile u32 *)GPUSTAT_REG) ) %X\n", g_yarmico_start_time);
 		LOG_MAIN("\nReg_GPUSTAT %X\n", g_yarmico_start_time);
-
-		g_yarmico_start_time = g_yarmico_start_time >> 20; // get to the 20th bit
-		LOG_MAIN("\nReg_GPUSTAT %X\n", g_yarmico_start_time);
-		g_yarmico_start_time = g_yarmico_start_time&1; // test that bit
-
 
 		if(g_yarmico_start_time) // if 1, it's PAL
 		{
@@ -1975,14 +1963,14 @@ int  main ()
 #if YARMICO_HEIGHT == 120
 	u32 res_timer;
 
-	 res_timer=0;
+	res_timer=0;
 #endif
 
-#ifdef _RELEASE_
+	//#ifdef _RELEASE_
 #ifdef NY_TITLE_DATA
 	display_netyaroze_title_screen(NY_TITLE_DATA);
 #endif
-#endif
+	//#endif
 	init();
 
 
@@ -1993,11 +1981,11 @@ int  main ()
 
 		if(g_yarmico_controller_special_buttons & YARMICO_CONTROLER_BUT_HOME_SELECT
 				&& g_yarmico_controller_special_buttons & YARMICO_CONTROLER_BUT_MENU_START)
-				{
-					// let game know to deinit?
-					game_deinit();
-					exit_to_siocons();
-				}
+		{
+			// let game know to deinit?
+			game_deinit();
+			exit_to_siocons();
+		}
 
 #if YARMICO_HEIGHT == 120
 		if( res_timer)
@@ -2396,23 +2384,18 @@ unsigned int mix(unsigned int a, unsigned int b, unsigned int c)
 void display_netyaroze_title_screen(u32 TIM_address)
 {
 	LOG_MAIN("DISPLAY_NY_TITLE  g_yarmico_game_time %d\n", g_yarmico_game_time);
-	g_yarmico_game_time =  0;
 
 
-	g_yarmico_start_time = ( *((volatile u32 *)GPUSTAT_REG) );
+	g_yarmico_start_time = PLAYSTATION_REGION_CHECK();
+	LOG_MAIN("\n( *((volatile u32 *)GPUSTAT_REG) ) %X\n", g_yarmico_start_time);
 	LOG_MAIN("\nReg_GPUSTAT %X\n", g_yarmico_start_time);
 
-	g_yarmico_start_time = g_yarmico_start_time >> 20; // get to the 20th bit
-	LOG_MAIN("\nReg_GPUSTAT %X\n", g_yarmico_start_time);
-	g_yarmico_start_time = g_yarmico_start_time&1; // test that bit
-
-
-	if(g_yarmico_start_time) // if 1, it's PAL
+	if(g_yarmico_start_time == 'E') // if E, it's PAL
 	{
 
 		StartRCnt(0); // restart counter to get new seed
 		SetVideoMode(MODE_PAL); // 1=PAL/50Hz with NTSC res
-
+	//	GsInitGraph(640,480,GsINTER+GsOFSGPU,0,0);
 		LOG_MAIN("*WARNING*\n");
 		LOG_MAIN("PAL PSX detected, using PAL (50Hz) with NTSC 640x480 resolution!\n");
 
@@ -2422,7 +2405,9 @@ void display_netyaroze_title_screen(u32 TIM_address)
 		VSync(0); VSync(0);// slow down to get new seed
 		VSync(0);VSync(0);VSync(0);
 
+
 		SetVideoMode(MODE_NTSC); // 0=NTSC/60Hz
+		// GsInitGraph(512,480,GsINTER+GsOFSGPU,0,0);
 		// SetVideoMode(MODE_PAL); // force PAL mode
 		LOG_MAIN("NTSC PSX detected.\n");
 
@@ -2431,14 +2416,14 @@ void display_netyaroze_title_screen(u32 TIM_address)
 
 	}
 
-
-
 	GsInitGraph(640,480,GsINTER+GsOFSGPU,0,0);
 
 
-	GsDRAWENV.r0=INIT_BG_RED;
-	GsDRAWENV.g0=INIT_BG_GREEN;
-	GsDRAWENV.b0=INIT_BG_BLUE;
+
+
+	GsDRAWENV.r0=0;
+	GsDRAWENV.g0=0;
+	GsDRAWENV.b0=0;
 
 	// Initialise ordering table
 	g_TableHeader[0].length=ORDERING_TABLE_LENGTH;
@@ -2487,7 +2472,7 @@ void display_netyaroze_title_screen(u32 TIM_address)
 
 			RenderFinish();
 			DrawSync(0);
-		}while(g_yarmico_game_time++ < 128); // mid brightness
+		}while(g_yarmico_game_time++ < YARMICO_TITLE_BRIGHTNESS_LEVEL); // mid brightness
 
 		LOG_MAIN("DISPLAY_NY_TITLE start finished }while(g_yarmico_game_time++ < 128); \n");
 
@@ -2508,7 +2493,7 @@ void display_netyaroze_title_screen(u32 TIM_address)
 			RenderFinish();
 			DrawSync(0);
 
-		}while(g_yarmico_game_time++ < 300);
+		}while(g_yarmico_game_time++ < YARMICO_TITLE_HOLD_COUNT);
 
 
 		LOG_MAIN("DISPLAY_NY_TITLE hold finished while(g_yarmico_game_time++ < 300); \n");
@@ -2519,14 +2504,14 @@ void display_netyaroze_title_screen(u32 TIM_address)
 		do{
 
 			RenderPrepare();
-			title.r = title.g = title.b = 127-g_yarmico_game_time;
+			title.r = title.g = title.b = YARMICO_TITLE_BRIGHTNESS_LEVEL-g_yarmico_game_time;
 			GsSortSprite( &title,&g_TableHeader[g_CurrentBuffer],OT_POS_SPRITE-g_OT_POS_CNT);	// register the sprite in the ordering table
 
 			//render_text(8, 180, 100, (char *)"- MAJOR SEIZURE AND LANGUAGE WARNING -");
 
 			RenderFinish();
 			DrawSync(0);
-		}while(g_yarmico_game_time++ < 127);
+		}while(g_yarmico_game_time++ < YARMICO_TITLE_BRIGHTNESS_LEVEL);
 
 
 
@@ -2554,6 +2539,8 @@ void display_netyaroze_title_screen(u32 TIM_address)
 
 	g_yarmico_game_time =  0;
 
+
+
 }
 
 #endif
@@ -2565,7 +2552,7 @@ void display_netyaroze_title_screen(u32 TIM_address)
 #define RAND_RAM_LOOPBACK 0xBFC7FF80 // 0xBFC7FF80 //  BFC80000h  End       (End of 512kBYTE BIOS ROM)
 #define RAND_RAM_START    0xBFC7F000 //0xBFC00000 // start of BIOS area
 #define RAND_RAM_BOUNDARY 8 //32
-
+#define LOG_RAND //printf
 // most likely slower and buggy but it's more random
 // dont use in game loop tho!
 u32 random(void)
