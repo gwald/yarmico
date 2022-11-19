@@ -703,7 +703,7 @@ void InitialiseGraphics (void)
 			else //120 to 256 width
 			{
 
-				g_yarmico_lores_upscale[0] = 8704; //fixed point scale factor 120×2.133333   =255.99996  4096×2.133333  = 8738.131968 - 8704%32=0
+				g_yarmico_lores_upscale[0] = 8704; //fixed point scale factor 120\D72.133333   =255.99996  4096\D72.133333  = 8738.131968 - 8704%32=0
 				g_yarmico_lores_upscale[1] = 0;
 				g_yarmico_lores_upscale[2] = 0;
 			}
@@ -997,7 +997,6 @@ void yarmico_sprite(u8 tpage, u32 texture_u, u32 texture_v, u32 texture_w, u32 t
 
 #ifdef USE_TPAGE01
 
-	case 0:
 	case 1:
 		tim = &g_TPAGE01;
 		break;
@@ -1138,14 +1137,39 @@ void yarmico_sprite(u8 tpage, u32 texture_u, u32 texture_v, u32 texture_w, u32 t
 
 	if(h_flip)
 	{
+
+
+		if(scale_flip ==0)
+		{
+			// i don't know why this is needed?
+			// Subject: weird pixel vanishing in sprite
+			// Date: 19 Jul 2001 18:03:57 GMT
+#if 1
+			tim->u--;
+			tim->w++;
+			tim->h++;
+			tim->scalex -=512;
+			tim->scaley -=256;
+#endif
+
+		}
+
 		tim->scalex = -tim->scalex;	 //	to flip the sprite left->right
-		tim->x += tim->w<<scale_flip;
+		tim->x += tim->w << scale_flip; // move to the right
 	}
 
 	if(v_flip)
 	{
 		tim->scaley = -tim->scaley;	 //	to flip the sprite up->down
-		tim->y += tim->h << scale_flip;
+		tim->y += tim->h << scale_flip; // move down
+
+		if(scale_flip ==0)
+		{
+			// i don't know why this is needed?
+			tim->y+=1;
+			tim->w+=1;
+			tim->scaley--;
+		}
 	}
 
 
@@ -2028,7 +2052,7 @@ int  main ()
 					else //120 to 256 width
 					{
 
-						g_yarmico_lores_upscale[0] = 8704; //fixed point scale factor 120×2.133333   =255.99996  4096×2.133333  = 8738.131968 - 8704%32=0
+						g_yarmico_lores_upscale[0] = 8704; //fixed point scale factor 120\D72.133333   =255.99996  4096\D72.133333  = 8738.131968 - 8704%32=0
 						g_yarmico_lores_upscale[1] = 0;
 						g_yarmico_lores_upscale[2] = 0;
 					}
@@ -2395,7 +2419,7 @@ void display_netyaroze_title_screen(u32 TIM_address)
 
 		StartRCnt(0); // restart counter to get new seed
 		SetVideoMode(MODE_PAL); // 1=PAL/50Hz with NTSC res
-	//	GsInitGraph(640,480,GsINTER+GsOFSGPU,0,0);
+		//	GsInitGraph(640,480,GsINTER+GsOFSGPU,0,0);
 		LOG_MAIN("*WARNING*\n");
 		LOG_MAIN("PAL PSX detected, using PAL (50Hz) with NTSC 640x480 resolution!\n");
 
