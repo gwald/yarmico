@@ -2414,6 +2414,10 @@ void display_netyaroze_title_screen(u32 TIM_address)
 	LOG_MAIN("\n( *((volatile u32 *)GPUSTAT_REG) ) %X\n", g_yarmico_start_time);
 	LOG_MAIN("\nReg_GPUSTAT %X\n", g_yarmico_start_time);
 
+	
+	ResetGraph(0);
+	GsDefDispBuff( 0, 0, 0, 0 );
+	
 	if(g_yarmico_start_time == 'E') // if E, it's PAL
 	{
 
@@ -2456,6 +2460,8 @@ void display_netyaroze_title_screen(u32 TIM_address)
 	g_TableHeader[1].org=TableArray[1];
 
 
+	GsClearOt(0,0,&g_TableHeader[0]);
+	GsClearOt(0,0,&g_TableHeader[1]);
 
 	// splash screens
 	{
